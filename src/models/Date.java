@@ -1,13 +1,24 @@
 package models;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Objects;
 
 // A date, synonymous to meeting, not time. The date still has time, though.
 public class Date {
+    private LocalDate day;
     private LocalTime startTime;
     private LocalTime endTime;
     private String name;
     private String note;
+
+    public LocalDate getDay() {
+        return day;
+    }
+
+    public void setDay(LocalDate day) {
+        this.day = day;
+    }
 
     public LocalTime getStartTime() {
         return startTime;
@@ -44,6 +55,7 @@ public class Date {
     private Date() {}
 
     private Date(Builder builder) {
+        this.day = builder.day;
         this.startTime = builder.startTime;
         this.endTime = builder.endTime;
         this.name = builder.name;
@@ -52,6 +64,7 @@ public class Date {
 
     //I don't think a builder is necessary, but for the sake of scalability, here it is.
     public static class Builder {
+        private LocalDate day;
         private LocalTime startTime;
         private LocalTime endTime;
         private String name;
@@ -79,8 +92,28 @@ public class Date {
             return this;
         }
 
+        public Builder withDay(LocalDate day) {
+            this.day = day;
+            return this;
+        }
+
         public Date build() {
             return new Date(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Date date = (Date) o;
+        return Objects.equals(getDay(), date.getDay()) && Objects.equals(getStartTime(), date.getStartTime()) && Objects.equals(getEndTime(), date.getEndTime()) && Objects.equals(getName(), date.getName()) && Objects.equals(getNote(), date.getNote());
+    }
+
+    public boolean equalsDayStartEndTime(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Date date = (Date) o;
+        return Objects.equals(getDay(), date.getDay()) && Objects.equals(getStartTime(), date.getStartTime()) && Objects.equals(getEndTime(), date.getEndTime());
     }
 }

@@ -7,14 +7,14 @@ import java.util.ArrayList;
 // Lazy singleton used.
 public class Calendar {
     private static Calendar singletonInstance;
-    private ArrayList<CalendarDay> calendarDays;
+    private ArrayList<Date> dates;
 
-    public ArrayList<CalendarDay> getCalendarDays() {
-        return calendarDays;
+    public ArrayList<Date> getDates() {
+        return dates;
     }
 
-    public void setCalendarDays(ArrayList<CalendarDay> calendarDays) {
-        this.calendarDays = calendarDays;
+    public void setDates(ArrayList<Date> dates) {
+        this.dates = dates;
     }
 
     private Calendar() {}
