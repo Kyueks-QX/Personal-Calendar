@@ -3,31 +3,25 @@ package logic;
 import models.Calendar;
 import models.Date;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
+//Handles all things time related
 public class TimeHandler {
-    public static Date findDate(Calendar calendar, LocalDate day, LocalTime startTime, LocalTime endTime) {
+    //Finds a date by its day, start and end hours
+    public static Date findDate(Calendar calendar, Date searchDate) {
         if (calendar.getDates().isEmpty()) { return null; }
 
-        Date searchDate = new Date.Builder()
-                .withDay(day)
-                .withStartTime(startTime)
-                .withEndTime(endTime)
-                .build();
-
         for (Date d : calendar.getDates()) {
-            if (d.equalsDayStartEndTime(searchDate)) { return d; }
+            if (d.equivalent(searchDate)) { return d; }
         }
         return null;
     }
 
+    //Makes sure the newly added date does not overlap with others in the calendar
     public static boolean isThereDateConflict(Calendar calendar, Date newDate) {
         for (Date date : calendar.getDates()) {
             if (date.getEndTime().isAfter(newDate.getStartTime()) && date.getDay().isEqual(newDate.getDay())) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 }

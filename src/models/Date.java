@@ -110,10 +110,15 @@ public class Date {
         return Objects.equals(getDay(), date.getDay()) && Objects.equals(getStartTime(), date.getStartTime()) && Objects.equals(getEndTime(), date.getEndTime()) && Objects.equals(getName(), date.getName()) && Objects.equals(getNote(), date.getNote());
     }
 
-    public boolean equalsDayStartEndTime(Object o) {
+    //it's like equals except it allows the compared object to have null fields
+    public boolean equivalent(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Date date = (Date) o;
-        return Objects.equals(getDay(), date.getDay()) && Objects.equals(getStartTime(), date.getStartTime()) && Objects.equals(getEndTime(), date.getEndTime());
+        return (Objects.equals(getDay(), date.getDay()) || date.getDay() == null)
+                && (Objects.equals(getStartTime(), date.getStartTime()) || date.getStartTime() == null)
+                && (Objects.equals(getEndTime(), date.getEndTime()) || date.getEndTime() == null)
+                && (Objects.equals(getName(), date.getName()) || date.getName() == null)
+                && (Objects.equals(getNote(), date.getNote()) || date.getNote() == null);
     }
 }

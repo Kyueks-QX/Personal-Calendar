@@ -2,9 +2,11 @@ package logic;
 
 import models.Calendar;
 import models.Date;
+import models.DateFieldNames;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 //Responsible for manipulating the calendar.
@@ -31,7 +33,7 @@ public class Booking {
                 .build();
 
         for (Date d : calendar.getDates()) {
-            if (d.equalsDayStartEndTime(searchDate)) { return d; }
+            if (d.equivalent(searchDate)) { return d; }
         }
         return null;
     }
@@ -46,7 +48,7 @@ public class Booking {
                 .withNote(note)
                 .build();
 
-        if (TimeHandler.isThereDateConflict(calendar, newDate)) {
+        if (!TimeHandler.isThereDateConflict(calendar, newDate) && startTime.isBefore(endTime)) {
             ArrayList<Date> dates = calendar.getDates();
             dates.add(newDate);
             calendar.setDates(dates);
@@ -58,6 +60,74 @@ public class Booking {
     //it just unbooks by removing an entry from the list
     public boolean unbook(LocalDate day, LocalTime startTime, LocalTime endTime) {
         if (calendar.getDates().isEmpty()) { return false; }
-        return calendar.getDates().remove(TimeHandler.findDate(calendar, day, startTime, endTime));
+
+        Date undate = new Date.Builder()
+                .withDay(day)
+                .withStartTime(startTime)
+                .withEndTime(endTime)
+                .build();
+
+        return calendar.getDates().remove(TimeHandler.findDate(calendar, undate));
+    }
+
+    //changes any value the user wants by passing the date's day, start time, which field and with what value to change
+    public boolean change(LocalDate day, LocalTime startTime, DateFieldNames dateFieldNames, String newValue) {
+        Date d = new Date.Builder()
+                .withDay(day)
+                .withStartTime(startTime)
+                .build();
+
+        Date changeDate = TimeHandler.findDate(calendar, d);
+
+        if (calendar.getDates().contains(changeDate) && changeDate != null) {
+            try {
+                switch (dateFieldNames) {
+                    case DATE: {
+                        changeDate.setDay(LocalDate.parse(newValue, DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+                        if (TimeHandler.isThereDateConflict(calendar, changeDate)) { return false; }
+                        break;
+                    }
+                    case START_TIME: {
+                        changeDate.setStartTime(LocalTime.parse(newValue, DateTimeFormatter.ofPattern("HH:mm")));
+                        if (TimeHandler.isThereDateConflict(calendar, changeDate)) { return false; }
+                        break;
+                    }
+                    case END_TIME: {
+                        changeDate.setEndTime(LocalTime.parse(newValue, DateTimeFormatter.ofPattern("HH:mm")));
+                        if (TimeHandler.isThereDateConflict(calendar, changeDate)) { return false; }
+                        break;
+                    }
+                    case NAME: {
+                        changeDate.setName(newValue);
+                        break;
+                    }
+                    case NOTE: {
+                        changeDate.setNote(newValue);
+                        break;
+                    }
+                    default:
+                        return false;
+                }
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        else { return false; }
+
+        int dateIndex = calendar.getDates().indexOf(changeDate);
+        ArrayList<Date> dates = calendar.getDates();
+
+        dates.set(dateIndex, changeDate);
+        return true;
+    }
+
+    //returns all dates in a given day
+    public ArrayList<Date> agenda(LocalDate day) {
+        ArrayList<Date> todayDates = new ArrayList<>();
+
+        for (Date date : calendar.getDates()) {
+            if (date.getDay() == day) { todayDates.add(date); }
+        }
+        return todayDates;
     }
 }
