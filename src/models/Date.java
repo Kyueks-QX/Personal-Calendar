@@ -62,7 +62,6 @@ public class Date {
         this.note = builder.note;
     }
 
-    //I don't think a builder is necessary, but for the sake of scalability, here it is.
     public static class Builder {
         private LocalDate day;
         private LocalTime startTime;

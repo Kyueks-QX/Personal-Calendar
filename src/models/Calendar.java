@@ -1,16 +1,17 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 // A single calendar containing all days.
 // Has only one instance, since only one calendar will be loaded at any time.
 // Lazy singleton used.
 public class Calendar {
     private static Calendar singletonInstance;
-    private ArrayList<Date> dates;
+    private List<Date> dates;
 
     public ArrayList<Date> getDates() {
-        return dates;
+        return (ArrayList<Date>) dates;
     }
 
     public void setDates(ArrayList<Date> dates) {
