@@ -1,15 +1,10 @@
-package logic.date_handlers;
+package logic.date;
 
-import logic.date_handlers.DateHandler;
 import models.Calendar;
 import models.Date;
 
 //Finds a date by its day, start and end hours
 public class DateFind extends DateHandler {
-    public DateFind(Calendar calendar, Date date) {
-        super(calendar, date);
-    }
-
     public static Date findDate(Calendar calendar, Date searchDate) {
         if (calendar.getDates().isEmpty()) { return null; }
 

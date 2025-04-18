@@ -1,15 +1,11 @@
-package logic.date_handlers;
+package logic.date;
 
 import models.Calendar;
 import models.Date;
 
+//Makes sure the newly added date does not overlap with others in the calendar
 public class DateConflict extends DateHandler {
-    public DateConflict(Calendar calendar, Date date) {
-        super(calendar, date);
-    }
-
-    //Makes sure the newly added date does not overlap with others in the calendar
-    public static boolean isThereDateConflict() {
+    public static boolean isThereDateConflict(Calendar calendar, Date date) {
         for (Date calDate : calendar.getDates()) {
             if (calDate.getEndTime().isAfter(date.getStartTime()) && calDate.getDay().isEqual(date.getDay())) {
                 return true;
