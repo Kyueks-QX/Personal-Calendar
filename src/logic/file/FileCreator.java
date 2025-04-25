@@ -1,14 +1,19 @@
 package logic.file;
 
+import java.io.File;
+
+// Makes a file.
 public class FileCreator extends FileHandler {
-    public static boolean fileCreate() {
+    public static boolean createFile(String fileName) {
+        if (fileName == null) {
+            fileName = "default.txt";
+        }
         try {
-            if (file == null) {
-                FileOpener.OpenFile("default.txt");
-            }
+            FileName.setFileName(fileName);
+            file = new File(fileName);
             return file.createNewFile();
         } catch (Exception e) {
-            throw new RuntimeException("Couldn't make file with name " + FileHandler.file);
+            throw new RuntimeException("File create error: " + FileHandler.file + ", " + e);
         }
     }
 }

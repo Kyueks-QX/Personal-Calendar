@@ -6,14 +6,13 @@ import java.io.FileWriter;
 
 //Opens files.
 public class FileOpener extends FileHandler {
-    public static void OpenFile(String fileName) {
+    public static void openFile(String fileName) {
         try {
-            FileName.setFileName(fileName);
             file = new File(fileName);
             fileReader = new FileReader(file);
             fileWriter = new FileWriter(file);
         } catch (Exception e) {
-            throw new RuntimeException("Error with file opening");
+            throw new RuntimeException("File open error: " + e);
         }
     }
 }

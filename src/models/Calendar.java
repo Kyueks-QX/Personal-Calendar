@@ -20,9 +20,10 @@ public class Calendar {
 
     private Calendar() {}
 
-    public static Calendar getInstance() {
+    public Calendar getInstance() {
         if (singletonInstance == null) {
             singletonInstance = new Calendar();
+            this.dates = new ArrayList<>();
         }
         return singletonInstance;
     }
