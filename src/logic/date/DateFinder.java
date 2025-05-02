@@ -4,7 +4,7 @@ import models.Calendar;
 import models.Date;
 
 //Finds a date by its day, start and end hours
-public class DateFind extends DateHandler {
+public class DateFinder extends DateHandler {
     public static Date findDate(Calendar calendar, Date searchDate) {
         if (calendar.getDates().isEmpty()) { return null; }
 

@@ -7,7 +7,7 @@ import models.Date;
 public class DateConflict extends DateHandler {
     public static boolean isThereDateConflict(Calendar calendar, Date date) {
         for (Date calDate : calendar.getDates()) {
-            if (calDate.getEndTime().isAfter(date.getStartTime()) && calDate.getDay().isEqual(date.getDay())) {
+            if (calDate.getEndTime().isAfter(date.getStartTime()) && calDate.getDay().equals(date.getDay())) {
                 return true;
             }
         }

@@ -2,7 +2,7 @@ package logic.file;
 
 import models.Calendar;
 
-public class FileSave extends FileHandler {
+public class FileSaver extends FileHandler {
     public static void saveToFile(Calendar calendar, String fileName) {
         if (fileName != null) {
             FileCloser.closeFile();

@@ -6,17 +6,17 @@ import java.util.Objects;
 
 // A date, synonymous to meeting, not time. The date still has time, though.
 public class Date {
-    private LocalDate day;
+    private Day day;
     private LocalTime startTime;
     private LocalTime endTime;
     private String name;
     private String note;
 
-    public LocalDate getDay() {
+    public Day getDay() {
         return day;
     }
 
-    public void setDay(LocalDate day) {
+    public void setDay(Day day) {
         this.day = day;
     }
 
@@ -63,7 +63,7 @@ public class Date {
     }
 
     public static class Builder {
-        private LocalDate day;
+        private Day day;
         private LocalTime startTime;
         private LocalTime endTime;
         private String name;
@@ -91,7 +91,7 @@ public class Date {
             return this;
         }
 
-        public Builder withDay(LocalDate day) {
+        public Builder withDay(Day day) {
             this.day = day;
             return this;
         }

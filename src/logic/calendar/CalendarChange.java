@@ -1,11 +1,11 @@
 package logic.calendar;
 
 import logic.date.DateConflict;
-import logic.date.DateFind;
-import logic.date.DateMake;
-import models.Calendar;
+import logic.date.DateFinder;
+import logic.date.DateMaker;
 import models.Date;
 import models.DateFieldNames;
+import models.Day;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -14,16 +14,18 @@ import java.util.ArrayList;
 
 //changes any value the user wants by passing the date's day, start time, which field and with what value to change
 public class CalendarChange extends CalendarHandler {
-    public boolean change(LocalDate day, LocalTime startTime, DateFieldNames dateFieldNames, String newValue) {
-        Date d = DateMake.make(day, startTime, null, null, null);
+    public boolean change(Day day, LocalTime startTime, DateFieldNames dateFieldNames, String newValue) {
+        Date d = DateMaker.make(day, startTime, null, null, null);
 
-        Date changeDate = DateFind.findDate(calendar, d);
+        Date changeDate = DateFinder.findDate(calendar, d);
 
         if (calendar.getDates().contains(changeDate) && changeDate != null) {
             try {
                 switch (dateFieldNames) {
                     case DATE: {
-                        changeDate.setDay(LocalDate.parse(newValue, DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+                        changeDate.setDay(
+                                new Day(LocalDate.parse(newValue, DateTimeFormatter.ofPattern("dd-MM-yyyy")))
+                        );
                         if (DateConflict.isThereDateConflict(calendar, changeDate)) { return false; }
                         break;
                     }
