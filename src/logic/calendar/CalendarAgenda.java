@@ -1,5 +1,7 @@
 package logic.calendar;
 
+import logic.day.DayFinder;
+import logic.day.DayHandler;
 import models.Calendar;
 import models.Date;
 import models.Day;
@@ -14,7 +16,7 @@ public class CalendarAgenda extends CalendarHandler {
         List<Date> todayDates = new ArrayList<>();
 
         for (Date date : calendar.getDates()) {
-            if (date.getDay() == day) { todayDates.add(date); }
+            if (date.getDay() == day && !DayHandler.days.get(DayFinder.dayIndex(day)).isHoliday()) { todayDates.add(date); }
         }
         return todayDates;
     }

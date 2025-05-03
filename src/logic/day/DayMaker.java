@@ -5,10 +5,11 @@ import models.Day;
 import java.time.LocalDate;
 
 public class DayMaker extends DayHandler {
+    // Makes a day if it doesn't exist
     public static boolean makeDay(LocalDate tempDay) {
         Day newDay = new Day(tempDay);
-        if (DayFinder.findDay(newDay) == null) {
-            days.add(days.size() / 2, newDay);
+        if (DayFinder.dayIndex(newDay) != -1) {
+            DaySorter.insertWithBinary(newDay);
             return true;
         }
         return false;

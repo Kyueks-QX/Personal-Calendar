@@ -2,15 +2,13 @@ package logic.day;
 
 import models.Day;
 
-import java.time.LocalDate;
-
 public class DayFinder {
-    public static Day findDay(Day searchedDay) {
+    public static int dayIndex(Day searchedDay) {
         for (Day day : DayHandler.days) {
             if (day.getDay() == searchedDay.getDay()) {
-                return day;
+                return DayHandler.days.indexOf(day);
             }
         }
-        return null;
+        return -1;
     }
 }

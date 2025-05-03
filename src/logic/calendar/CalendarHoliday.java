@@ -1,11 +1,16 @@
 package logic.calendar;
 
+import logic.day.DayFinder;
+import logic.day.DayHandler;
 import models.Day;
 
-import java.time.LocalTime;
-
 public class CalendarHoliday extends CalendarHandler {
-    public static void holiday(Day day) {
-
+    public static boolean holiday(Day day) {
+        int index = DayFinder.dayIndex(day);
+        if (index != -1) {
+            DayHandler.days.get(index).setHoliday(!DayHandler.days.get(index).isHoliday());
+            return true;
+        }
+        return false;
     }
 }
