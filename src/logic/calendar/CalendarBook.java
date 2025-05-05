@@ -20,7 +20,7 @@ public class CalendarBook extends CalendarHandler {
             return false;
         }
 
-        Date newDate = DateMaker.make(day, startTime, endTime, name, note);
+        Date newDate = DateMaker.makeDate(day, startTime, endTime, name, note);
 
         if (!DateConflict.isThereDateConflict(calendar, newDate) && startTime.isBefore(endTime)) {
             ArrayList<Date> dates = calendar.getDates();

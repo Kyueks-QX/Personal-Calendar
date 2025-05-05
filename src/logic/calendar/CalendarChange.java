@@ -15,9 +15,9 @@ import java.util.ArrayList;
 //changes any value the user wants by passing the date's day, start time, which field and with what value to change
 public class CalendarChange extends CalendarHandler {
     public boolean change(Day day, LocalTime startTime, DateFieldNames dateFieldNames, String newValue) {
-        Date d = DateMaker.make(day, startTime, null, null, null);
+        Date d = DateMaker.makeDate(day, startTime, null, null, null);
 
-        Date changeDate = DateFinder.findDate(calendar, d);
+        Date changeDate = DateFinder.findDate(d);
 
         if (calendar.getDates().contains(changeDate) && changeDate != null) {
             try {
