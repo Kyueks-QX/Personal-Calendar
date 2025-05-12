@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class CalendarBook extends CalendarHandler {
     public static boolean book(Day day, LocalTime startTime, LocalTime endTime, String name, String note) {
         DayMaker.makeDay(day.getDay());
-        if (DayHandler.days.get(DayFinder.dayIndex(day)).isHoliday()) {
+        if (DayHandler.days.get(DayFinder.findDayIndex(day)).isHoliday()) {
             return false;
         }
 

@@ -11,12 +11,12 @@ import java.time.LocalTime;
 //Uses the Date class' builder to makeDate a new date, makes code look less bulky
 public class DateMaker {
     public static Date makeDate(Day day, LocalTime startTime, LocalTime endTime, String name, String note) {
-        if (DayFinder.dayIndex(day) == -1) {
+        if (DayFinder.findDayIndex(day) == -1) {
             DayMaker.makeDay(day.getDay());
         }
 
         return new Date.Builder()
-                .withDay(DayHandler.days.get(DayFinder.dayIndex(day)))
+                .withDay(DayHandler.days.get(DayFinder.findDayIndex(day)))
                 .withStartTime(startTime)
                 .withEndTime(endTime)
                 .withName(name)

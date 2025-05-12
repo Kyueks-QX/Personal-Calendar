@@ -1,11 +1,12 @@
 package models;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Menu {
+public class Menu implements UserInteractive {
     private String name;
     private String desc;
-    private List<String> options;
+    private Map<UserInteractive, String> options;
 
     private Menu(Builder builder) {
         this.name = builder.name;
@@ -29,18 +30,18 @@ public class Menu {
         this.desc = desc;
     }
 
-    public List<String> getOptions() {
+    public Map<UserInteractive, String> getOptions() {
         return options;
     }
 
-    public void setOptions(List<String> options) {
+    public void setOptions(HashMap<UserInteractive, String> options) {
         this.options = options;
     }
 
     public static class Builder {
         private String name;
         private String desc;
-        private List<String> options;
+        private HashMap<UserInteractive, String> options;
 
         public Builder withName(String name) {
             this.name = name;
@@ -52,7 +53,7 @@ public class Menu {
             return this;
         }
 
-        public Builder withOptions(List<String> options) {
+        public Builder withOptions(HashMap<UserInteractive, String> options) {
             this.options = options;
             return this;
         }

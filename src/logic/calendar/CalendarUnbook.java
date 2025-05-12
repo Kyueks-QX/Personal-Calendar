@@ -14,6 +14,6 @@ public class CalendarUnbook extends CalendarHandler {
 
         Date undate = DateMaker.makeDate(day, startTime, endTime, null, null);
 
-        return calendar.getDates().remove(DateFinder.findDate(calendar, undate));
+        return calendar.getDates().remove(DateFinder.findDate(undate));
     }
 }
