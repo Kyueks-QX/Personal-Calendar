@@ -6,19 +6,10 @@ import java.util.Objects;
 
 // A date, synonymous to meeting, not time. The date still has time, though.
 public class Date {
-    private Day day;
     private LocalTime startTime;
     private LocalTime endTime;
     private String name;
     private String note;
-
-    public Day getDay() {
-        return day;
-    }
-
-    public void setDay(Day day) {
-        this.day = day;
-    }
 
     public LocalTime getStartTime() {
         return startTime;
@@ -55,15 +46,20 @@ public class Date {
     private Date() {}
 
     private Date(Builder builder) {
-        this.day = builder.day;
         this.startTime = builder.startTime;
         this.endTime = builder.endTime;
         this.name = builder.name;
         this.note = builder.note;
     }
 
+    public Date(Date date) {
+        this.startTime = date.startTime;
+        this.endTime = date.endTime;
+        this.name = date.name;
+        this.note = date.note;
+    }
+
     public static class Builder {
-        private Day day;
         private LocalTime startTime;
         private LocalTime endTime;
         private String name;
@@ -91,11 +87,6 @@ public class Date {
             return this;
         }
 
-        public Builder withDay(Day day) {
-            this.day = day;
-            return this;
-        }
-
         public Date build() {
             return new Date(this);
         }
@@ -106,7 +97,7 @@ public class Date {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Date date = (Date) o;
-        return Objects.equals(getDay(), date.getDay()) && Objects.equals(getStartTime(), date.getStartTime()) && Objects.equals(getEndTime(), date.getEndTime()) && Objects.equals(getName(), date.getName()) && Objects.equals(getNote(), date.getNote());
+        return Objects.equals(getStartTime(), date.getStartTime()) && Objects.equals(getEndTime(), date.getEndTime()) && Objects.equals(getName(), date.getName()) && Objects.equals(getNote(), date.getNote());
     }
 
     //it's like equals except it allows the compared object to have null fields
@@ -114,8 +105,7 @@ public class Date {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Date date = (Date) o;
-        return (Objects.equals(getDay(), date.getDay()) || date.getDay() == null)
-                && (Objects.equals(getStartTime(), date.getStartTime()) || date.getStartTime() == null)
+        return (Objects.equals(getStartTime(), date.getStartTime()) || date.getStartTime() == null)
                 && (Objects.equals(getEndTime(), date.getEndTime()) || date.getEndTime() == null)
                 && (Objects.equals(getName(), date.getName()) || date.getName() == null)
                 && (Objects.equals(getNote(), date.getNote()) || date.getNote() == null);

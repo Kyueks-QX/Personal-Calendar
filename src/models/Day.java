@@ -1,17 +1,22 @@
 package models;
 
+import logic.find.Finders;
+
 import java.time.LocalDate;
+import java.util.*;
 
 public class Day {
-    private LocalDate day;
+    private LocalDate localDate;
     private boolean holiday;
+    private List<Date> dates;
+    //I have to refactor a lot of stuff to work with this...
 
-    public LocalDate getDay() {
-        return day;
+    public LocalDate getLocalDate() {
+        return localDate;
     }
 
-    public void setDay(LocalDate day) {
-        this.day = day;
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
     }
 
     public boolean isHoliday() {
@@ -22,12 +27,38 @@ public class Day {
         this.holiday = holiday;
     }
 
+    public ArrayList<Date> getDates() {
+        return (ArrayList<Date>) dates;
+    }
+
+    public Date getSingleDate(Date date) {
+        return dates.get(Finders.dateFinder.findIndex(date));
+    }
+
+    public void setDates(ArrayList<Date> dates) {
+        this.dates = dates;
+    }
+
+    public void setSingleDate(Date targetDate, Date newDate) {
+        dates.set(Finders.dateFinder.findIndex(targetDate), newDate);
+    }
+
     public Day(LocalDate day) {
-        this.day = day;
+        this.localDate = day;
         holiday = false;
+        dates = new ArrayList<>();
     }
 
     public Day() {
+        localDate = null;
         holiday = false;
+        dates = new ArrayList<>();
+    }
+
+    //this is for making an identical object in a different instance
+    public Day(Day day) {
+        this.localDate = day.localDate;
+        this.holiday = day.holiday;
+        this.dates = day.dates;
     }
 }

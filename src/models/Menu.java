@@ -30,8 +30,8 @@ public class Menu implements UserInteractive {
         this.desc = desc;
     }
 
-    public Map<UserInteractive, String> getOptions() {
-        return options;
+    public HashMap<UserInteractive, String> getOptions() {
+        return (HashMap<UserInteractive, String>) options;
     }
 
     public void setOptions(HashMap<UserInteractive, String> options) {
