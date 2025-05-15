@@ -1,8 +1,11 @@
 package logic.obj.calendar;
 
+import logic.obj.date.DateAdder;
+import logic.obj.date.DateChanger;
 import logic.obj.date.DateConflict;
 import logic.obj.date.DateMaker;
 import logic.find.Finders;
+import logic.obj.day.DayAdder;
 import models.Date;
 import models.DateFieldNames;
 import models.Day;
@@ -37,12 +40,10 @@ public class CalendarChange extends CalendarHandler {
             try {
                 switch (dateFieldNames) {
                     case DATE: {
-                        List<Date>
-                        Day newDay = day;
-                        newDay.setLocalDate(LocalDate.parse(newValue, DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-                        calendar.setSingleDay();
-                        if (DateConflict.isThereDateConflict(calendar, day, changeDate)) { return 4; }
-                        break;
+                        Day newDay = new Day(LocalDate.parse(newValue, DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+                        DayAdder.addDay(newDay);
+                        if (DateChanger.changeDayOfDate(day, newDay, changeDate) != 0) { return 4; }
+                        return 0;
                     }
                     case START_TIME: {
                         changeDate.setStartTime(LocalTime.parse(newValue, DateTimeFormatter.ofPattern("HH:mm")));
@@ -71,10 +72,8 @@ public class CalendarChange extends CalendarHandler {
         }
         else { return 3; }
 
-        int dateIndex = calendar.getDays().indexOf(changeDate);
-        ArrayList<Date> dates = calendar.getDays();
+        day.setSingleDate((Date) Finders.dateFinder.find(d), changeDate);
 
-        dates.set(dateIndex, changeDate);
         return 0;
     }
 }

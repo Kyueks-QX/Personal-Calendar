@@ -2,9 +2,7 @@ package logic.obj.calendar;
 
 import logic.obj.date.DateConflict;
 import logic.obj.date.DateMaker;
-import logic.obj.day.DayHandler;
-import logic.obj.day.DayMaker;
-import logic.find.Finders;
+import logic.obj.day.DayAdder;
 import models.Date;
 import models.Day;
 
@@ -27,7 +25,7 @@ public class CalendarBook extends CalendarHandler {
             return 1;
         }
 
-        DayMaker.makeDay(day.getLocalDate());
+        DayAdder.addDay(day.getLocalDate());
         day = calendar.getSingleDay(day);
 
         if (day.isHoliday()) {

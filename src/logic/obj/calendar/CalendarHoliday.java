@@ -8,8 +8,8 @@ public class CalendarHoliday extends CalendarHandler {
     public static boolean holiday(Day day) {
         int index = Finders.dayFinder.findIndex(day);
         if (index != -1) {
-            DayHandler.days.get(index).setHoliday(!DayHandler.days.get(index).isHoliday());
-            //day clear is necessary! Either here or somewhere else, IDK
+            Day d = CalendarHandler.calendar.getDays().get(index);
+            d.setHoliday(!d.isHoliday());
             return true;
         }
         return false;

@@ -18,7 +18,7 @@ public class DateFinder extends DateHandler implements Finder {
 
         for (Day day : days) {
             for (Date d : day.getDates()) {
-                if (d.equivalent(searchDate)) {
+                if (d.equivalent(searchDate) || d == o) {
                     return d;
                 }
             }
@@ -35,7 +35,7 @@ public class DateFinder extends DateHandler implements Finder {
 
         for (Day day : days) {
             for (Date d : day.getDates()) {
-                if (d.equivalent(searchDate)) {
+                if (d.equivalent(searchDate) || d == o) {
                     return day.getDates().indexOf(d);
                 }
             }

@@ -1,6 +1,8 @@
 package models;
 
 import logic.find.Finders;
+import logic.obj.date.DateAdder;
+import logic.obj.day.DayAdder;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -31,8 +33,20 @@ public class Day {
         return (ArrayList<Date>) dates;
     }
 
+    public int getAllOccupiedHours() {
+        int sum = 0;
+        for (Date d : dates) {
+            sum += d.getStartTimeAsInt();
+        }
+        return sum;
+    }
+
     public Date getSingleDate(Date date) {
-        return dates.get(Finders.dateFinder.findIndex(date));
+        int index = Finders.dateFinder.findIndex(date);
+        if (index == -1) {
+            return null;
+        }
+        return dates.get(index);
     }
 
     public void setDates(ArrayList<Date> dates) {

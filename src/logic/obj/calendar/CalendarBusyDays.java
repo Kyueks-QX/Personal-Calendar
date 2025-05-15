@@ -1,25 +1,44 @@
 package logic.obj.calendar;
 
-import logic.obj.day.DayHandler;
 import models.Day;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class CalendarBusyDays {
     public static Map<Integer, Day> busyDays(Day from, Day to) {
+        if (from.getLocalDate().isAfter(to.getLocalDate())) {
+            return null;
+        }
+
+        Map<Day, Integer> hashDays = new HashMap<>();
+
+        for (Day d : CalendarHandler.calendar.getDays()) {
+            if (d.getLocalDate().isBefore(from.getLocalDate())) {
+                continue;
+            }
+
+            if (d.getLocalDate().isAfter(to.getLocalDate())) {
+                break;
+            }
+
+            if (hashDays.containsKey(d)) {
+                hashDays.put(d, hashDays.get(d) + d.getAllOccupiedHours());
+            } else {
+                hashDays.put(d, d.getAllOccupiedHours());
+            }
+        }
+
         Map<Integer, Day> bd = new TreeMap<>(
                 Comparator.reverseOrder()
         );
 
-        for (Day d : DayHandler.days) {
-            if (d.getLocalDate().isBefore(from.getLocalDate()) || d.getLocalDate().isAfter(to.getLocalDate())) {
-                continue;
-            }
-
-            //CAN'T DO SHIT I NEED TO REFACTOR DAY AND DATE CLASSES AGAIN AAAAAA
-            //heavens help me
+        for (Map.Entry<Day, Integer> diPair : hashDays.entrySet()) {
+            bd.put(diPair.getValue(), diPair.getKey());
         }
+
+        return bd;
     }
 }

@@ -15,6 +15,11 @@ public class Date {
         return startTime;
     }
 
+    public int getStartTimeAsInt() {
+        return startTime.getHour() * 3600
+                + startTime.getMinute() * 60;
+    }
+
     public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }

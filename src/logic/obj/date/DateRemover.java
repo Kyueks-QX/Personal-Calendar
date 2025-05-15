@@ -23,4 +23,20 @@ public class DateRemover extends DateHandler {
         CalendarHandler.calendar.setSingleDay(oldDay, newDay);
         return 0;
     }
+
+    public static int removeDateFromDay(Date targetDate, Day targetDay) {
+        Day oldDay = (Day) Finders.dayFinder.find(targetDay);
+        if (oldDay == null) {
+            return 1;
+        }
+
+        ArrayList<Date> dates = oldDay.getDates();
+
+        dates.remove(targetDate);
+
+        Day newDay = new Day(oldDay);
+        newDay.setDates(dates);
+        CalendarHandler.calendar.setSingleDay(oldDay, newDay);
+        return 0;
+    }
 }
