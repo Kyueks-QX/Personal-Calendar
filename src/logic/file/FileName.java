@@ -1,4 +1,4 @@
-package logic.obj.file;
+package logic.file;
 
 public class FileName extends FileHandler {
     public static void setFileName(String fileName) {

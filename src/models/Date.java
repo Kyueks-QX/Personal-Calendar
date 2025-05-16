@@ -28,6 +28,11 @@ public class Date {
         return endTime;
     }
 
+    public int getEndTimeAsInt() {
+        return endTime.getHour() * 3600
+                + endTime.getMinute() * 60;
+    }
+
     public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }

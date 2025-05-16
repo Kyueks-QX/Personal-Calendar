@@ -1,4 +1,4 @@
-package logic.obj.file;
+package logic.file;
 
 import java.io.File;
 

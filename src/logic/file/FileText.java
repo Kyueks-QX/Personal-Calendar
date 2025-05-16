@@ -1,4 +1,4 @@
-package logic.obj.file;
+package logic.file;
 
 public class FileText extends FileHandler {
     public static void setText(String text) {

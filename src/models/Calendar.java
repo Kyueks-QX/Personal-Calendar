@@ -3,13 +3,13 @@ package models;
 import logic.find.Finders;
 import logic.obj.calendar.CalendarHandler;
 
+import java.io.Serializable;
 import java.util.*;
 
 // A single calendar containing all days.
-// Has only one instance, since only one calendar will be loaded at any time.
-// Lazy singleton used.
-public class Calendar {
-    private static Calendar singletonInstance;
+// --Has only one instance, since only one calendar will be loaded at any time.--
+// Nevermind, I found a reason to have multiple calendars loaded at once.
+public class Calendar implements Serializable {
     private List<Day> days;
 
     public ArrayList<Day> getDays() {
@@ -28,13 +28,7 @@ public class Calendar {
         days.set(Finders.dayFinder.findIndex(targetDay), newDay);
     }
 
-    private Calendar() {}
-
-    public Calendar getInstance() {
-        if (singletonInstance == null) {
-            singletonInstance = new Calendar();
-            this.days = new ArrayList<>();
-        }
-        return singletonInstance;
+    public Calendar() {
+        days = new ArrayList<>();
     }
 }

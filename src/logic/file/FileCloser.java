@@ -1,4 +1,4 @@
-package logic.obj.file;
+package logic.file;
 
 //Closes files.
 public class FileCloser extends FileHandler {

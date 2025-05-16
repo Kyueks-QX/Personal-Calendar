@@ -1,4 +1,4 @@
-package logic.obj.file;
+package logic.file;
 
 //writes from text into the file
 public class FileWriter extends FileHandler {
