@@ -7,17 +7,30 @@ import logic.obj.date.DateRemover;
 import models.Date;
 import models.Day;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 //it just unbooks by removing an entry from the list
 public class CalendarUnbook extends CalendarHandler {
-    public static boolean unbook(Day day, LocalTime startTime, LocalTime endTime) {
-        if (calendar.getDays().isEmpty()) { return false; }
+    public static int unbook(Day targetDay, LocalTime startTime, LocalTime endTime) {
+        if (targetDay == null || startTime == null || endTime == null) {
+            return 1;
+        }
+
+        if (Finders.dayFinder.find(targetDay) == null) { return 2; }
+        Day day = new Day((Day) Finders.dayFinder.find(targetDay));
 
         Date undate = DateMaker.makeDate(day, startTime, endTime, null, null);
         undate = (Date) Finders.dateFinder.find(undate);
+        if (undate == null) { return 3; }
+
         DateRemover.removeDateFromDay(undate, day);
 
-        return calendar.getDays().remove((Date) Finders.dateFinder.find(undate));
+        ArrayList<Day> days = calendar.getDays();
+        days.set(Finders.dayFinder.findIndex(targetDay), day);
+        calendar.setDays(days);
+
+        return 0;
     }
 }

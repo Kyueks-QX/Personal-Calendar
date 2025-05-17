@@ -2,7 +2,7 @@ package logic.find;
 
 import logic.obj.date.DateFinder;
 import logic.obj.day.DayFinder;
-import logic.obj.menu.MenuFinder;
+import logic.obj.uao.menu.MenuFinder;
 
 //contains every single finder as public static fields
 public class Finders {

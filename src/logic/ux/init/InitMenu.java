@@ -1,7 +1,9 @@
 package logic.ux.init;
 
 import logic.find.Finders;
-import logic.obj.menu.MenuAdder;
+import logic.obj.uao.UAOAdders;
+import logic.obj.uao.UAOHandler;
+import logic.obj.uao.menu.MenuAdder;
 
 public class InitMenu extends InitHandler implements Initializer {
     @Override
@@ -10,7 +12,7 @@ public class InitMenu extends InitHandler implements Initializer {
     }
 
     public static void initMenu() {
-        MenuAdder.addAllMenus();
-        MenuAdder.menuStack.push(Finders.menuFinder.findMenuByName("main menu"));
+        UAOAdders.menuAdder.addAllInitUAO();
+        UAOHandler.UAOStack.push(Finders.menuFinder.findMenuByName("mainMenu"));
     }
 }

@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.Objects;
 
 // A date, synonymous to meeting, not time. The date still has time, though.
+// All functionality involving dates don't care about the seconds, just minutes and hours.
 public class Date {
     private LocalTime startTime;
     private LocalTime endTime;
@@ -20,6 +21,10 @@ public class Date {
                 + startTime.getMinute() * 60;
     }
 
+    public String getStartTimeAsString() {
+        return startTime.getHour() + ":" + startTime.getMinute();
+    }
+
     public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
@@ -31,6 +36,10 @@ public class Date {
     public int getEndTimeAsInt() {
         return endTime.getHour() * 3600
                 + endTime.getMinute() * 60;
+    }
+
+    public String getEndTimeAsString() {
+        return endTime.getHour() + ":" + endTime.getMinute();
     }
 
     public void setEndTime(LocalTime endTime) {

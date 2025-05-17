@@ -3,10 +3,16 @@ package models;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Menu implements UserInteractive {
+public class Menu implements UserActionObject {
     private String name;
     private String desc;
-    private Map<UserInteractive, String> options;
+    private Map<UserActionObject, String> options;
+    private UserActionObject prevUserActionObject;
+
+    @Override
+    public UserActionObject getActionObject() {
+        return this;
+    }
 
     private Menu(Builder builder) {
         this.name = builder.name;
@@ -30,18 +36,27 @@ public class Menu implements UserInteractive {
         this.desc = desc;
     }
 
-    public HashMap<UserInteractive, String> getOptions() {
-        return (HashMap<UserInteractive, String>) options;
+    public HashMap<UserActionObject, String> getOptions() {
+        return (HashMap<UserActionObject, String>) options;
     }
 
-    public void setOptions(HashMap<UserInteractive, String> options) {
+    public void setOptions(HashMap<UserActionObject, String> options) {
         this.options = options;
+    }
+
+    public UserActionObject getPrevAction() {
+        return prevUserActionObject;
+    }
+
+    public void setPrevAction(UserActionObject prevUserActionObject) {
+        this.prevUserActionObject = prevUserActionObject;
     }
 
     public static class Builder {
         private String name;
         private String desc;
-        private HashMap<UserInteractive, String> options;
+        private HashMap<UserActionObject, String> options;
+        private UserActionObject prevUserActionObject;
 
         public Builder withName(String name) {
             this.name = name;
@@ -53,8 +68,13 @@ public class Menu implements UserInteractive {
             return this;
         }
 
-        public Builder withOptions(HashMap<UserInteractive, String> options) {
+        public Builder withOptions(HashMap<UserActionObject, String> options) {
             this.options = options;
+            return this;
+        }
+
+        public Builder withPrevAction(UserActionObject prevUserActionObject) {
+            this.prevUserActionObject = prevUserActionObject;
             return this;
         }
 

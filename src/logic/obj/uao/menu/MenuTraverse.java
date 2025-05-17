@@ -1,4 +1,4 @@
-package logic.obj.menu;
+package logic.obj.uao.menu;
 
 public class MenuTraverse {
 

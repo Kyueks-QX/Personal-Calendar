@@ -18,7 +18,7 @@ public class FileLoader extends FileHandler {
             in.close();
             file.close();
         } catch (Exception ex) {
-            System.out.println("File save error: " + ex);
+            System.out.println("File load error: " + ex);
         }
 
         return calendar;

@@ -2,6 +2,7 @@ package logic.obj.date;
 
 import logic.find.Finders;
 import logic.obj.calendar.CalendarHandler;
+import logic.obj.day.DayRemover;
 import models.Date;
 import models.Day;
 
@@ -21,6 +22,8 @@ public class DateRemover extends DateHandler {
         Day newDay = new Day(oldDay);
         newDay.setDates(dates);
         CalendarHandler.calendar.setSingleDay(oldDay, newDay);
+
+        DayRemover.removeEmptyDays();
         return 0;
     }
 
@@ -37,6 +40,8 @@ public class DateRemover extends DateHandler {
         Day newDay = new Day(oldDay);
         newDay.setDates(dates);
         CalendarHandler.calendar.setSingleDay(oldDay, newDay);
+
+        DayRemover.removeEmptyDays();
         return 0;
     }
 }

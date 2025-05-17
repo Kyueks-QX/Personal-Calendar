@@ -1,7 +1,6 @@
 package logic.obj.calendar;
 
-import logic.obj.date.DateAdder;
-import logic.obj.date.DateChanger;
+import logic.obj.date.DateMover;
 import logic.obj.date.DateConflict;
 import logic.obj.date.DateMaker;
 import logic.find.Finders;
@@ -13,8 +12,6 @@ import models.Day;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 //changes any value the user wants by passing the date's day, start time, which field and with what value to change
 
@@ -22,7 +19,7 @@ import java.util.List;
 // 0 (OK): Successfully booked
 // 1 (ERROR): date field error (how did this happen)
 // 2 (ERROR): unknown error
-// 3 (ERROR): conflicts with another date
+// 3 (ERROR): date doesn't exist in calendar
 // 4 (ERROR): changed date conflicts with other dates
 // 5 (ERROR): null argument(s) given
 
@@ -42,7 +39,7 @@ public class CalendarChange extends CalendarHandler {
                     case DATE: {
                         Day newDay = new Day(LocalDate.parse(newValue, DateTimeFormatter.ofPattern("dd-MM-yyyy")));
                         DayAdder.addDay(newDay);
-                        if (DateChanger.changeDayOfDate(day, newDay, changeDate) != 0) { return 4; }
+                        if (DateMover.changeDayOfDate(day, newDay, changeDate) != 0) { return 4; }
                         return 0;
                     }
                     case START_TIME: {

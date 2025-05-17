@@ -1,6 +1,7 @@
 package logic.obj.day;
 
 import logic.find.Finder;
+import logic.find.Finders;
 import logic.obj.calendar.CalendarHandler;
 import models.Date;
 import models.Day;
@@ -39,7 +40,7 @@ public class DayFinder extends DayHandler implements Finder {
 
         for (Day day : days) {
             for (Date date : day.getDates()) {
-                if (day.equals(d)) {
+                if (Finders.dateFinder.find(date).equals(d)) {
                     return day;
                 }
             }

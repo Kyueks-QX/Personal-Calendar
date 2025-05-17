@@ -4,7 +4,6 @@ import logic.file.FileHandler;
 import models.Calendar;
 
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 public class FileSaver extends FileHandler {

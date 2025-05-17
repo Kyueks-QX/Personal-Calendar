@@ -17,6 +17,12 @@ public class Day {
         return localDate;
     }
 
+    public String getLocalDateAsString() {
+        return localDate.getDayOfMonth() + "-"
+                + localDate.getMonthValue() + "-"
+                + localDate.getYear();
+    }
+
     public void setLocalDate(LocalDate localDate) {
         this.localDate = localDate;
     }

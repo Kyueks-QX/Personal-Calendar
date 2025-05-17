@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 // find the next available non-holiday time slot
 // has to be not earlier than 8 and not later than 17
+// findslot merged with findslotwith
+
 public class CalendarFindSlot {
     public static Date findSlot(Day fromDay, int hours, String fileName) {
         //the gap between 8:00 and 17:00 is 9 hours
@@ -30,7 +32,7 @@ public class CalendarFindSlot {
             if (c == null) {
                 continue;
             }
-            
+
             for (Day day : c.getDays()) {
                 if (day.getLocalDate().isBefore(fromDay.getLocalDate()) || day.isHoliday()) {
                     continue;
