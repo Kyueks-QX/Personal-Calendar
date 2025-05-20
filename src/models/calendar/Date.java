@@ -1,6 +1,5 @@
-package models;
+package models.calendar;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
@@ -128,5 +127,14 @@ public class Date {
                 && (Objects.equals(getEndTime(), date.getEndTime()) || date.getEndTime() == null)
                 && (Objects.equals(getName(), date.getName()) || date.getName() == null)
                 && (Objects.equals(getNote(), date.getNote()) || date.getNote() == null);
+    }
+
+    @Override
+    public String toString() {
+        return "startTime: " + startTime.toString() +
+                ", endTime: " + endTime.toString() +
+                ", name: " + name +
+                ", note: " + note +
+                '}';
     }
 }

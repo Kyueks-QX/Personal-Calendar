@@ -1,7 +1,7 @@
 package logic.obj.calendar;
 
-import models.Date;
-import models.Day;
+import models.calendar.Date;
+import models.calendar.Day;
 
 import java.util.ArrayList;
 import java.util.List;

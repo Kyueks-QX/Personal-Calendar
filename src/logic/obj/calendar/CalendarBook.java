@@ -3,8 +3,8 @@ package logic.obj.calendar;
 import logic.obj.date.DateConflict;
 import logic.obj.date.DateMaker;
 import logic.obj.day.DayAdder;
-import models.Date;
-import models.Day;
+import models.calendar.Date;
+import models.calendar.Day;
 
 import java.time.LocalTime;
 import java.util.ArrayList;

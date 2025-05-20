@@ -1,15 +1,19 @@
 package logic.obj.calendar;
 
-import logic.obj.day.DayHandler;
-import logic.find.Finders;
-import models.Date;
-import models.Day;
+import models.calendar.Date;
+import models.calendar.Day;
 
 import java.util.ArrayList;
 import java.util.List;
 
-//returns all dates in a given day
 public class CalendarAgenda extends CalendarHandler {
+    /**
+     * Returns all dates in a given day.
+     * @param agendaDay
+     * The day whose dates will be extracted from.
+     * @return
+     * Returns an ArrayList of Dates.
+     */
     public static List<Date> agenda(Day agendaDay) {
         if (agendaDay == null) { return null; }
 

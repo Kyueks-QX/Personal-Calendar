@@ -1,7 +1,6 @@
-package models;
+package models.calendar;
 
 import logic.find.Finders;
-import logic.obj.calendar.CalendarHandler;
 
 import java.io.Serializable;
 import java.util.*;

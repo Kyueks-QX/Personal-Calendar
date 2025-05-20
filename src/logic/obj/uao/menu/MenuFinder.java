@@ -1,11 +1,12 @@
 package logic.obj.uao.menu;
 
-import logic.find.Finder;
+import logic.obj.uao.UAOFinder;
 import logic.obj.uao.UAOHandler;
-import models.Menu;
-import models.UserActionObject;
+import logic.obj.uao.UAONames;
+import models.uao.Menu;
+import models.uao.UserActionObject;
 
-public class MenuFinder extends UAOHandler implements Finder {
+public class MenuFinder extends UAOHandler implements UAOFinder {
     @Override
     public Object find(Object o) {
         Menu searchedMenu = (Menu) o;
@@ -28,7 +29,8 @@ public class MenuFinder extends UAOHandler implements Finder {
         return -1;
     }
 
-    public Menu findMenuByName(String name) {
+    @Override
+    public UserActionObject findUAOByName(UAONames name) {
         for (UserActionObject menu : userActionObjects) {
             if (!menu.getClass().equals(Menu.class)) {
                 continue;

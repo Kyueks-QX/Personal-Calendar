@@ -2,7 +2,7 @@ package logic.obj.day;
 
 import logic.find.Finders;
 import logic.obj.calendar.CalendarHandler;
-import models.Day;
+import models.calendar.Day;
 
 import java.time.LocalDate;
 import java.util.Comparator;

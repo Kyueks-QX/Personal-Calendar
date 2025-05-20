@@ -1,9 +1,9 @@
 package logic.ux.init;
 
-import logic.find.Finders;
 import logic.obj.uao.UAOAdders;
+import logic.obj.uao.UAOFinders;
 import logic.obj.uao.UAOHandler;
-import logic.obj.uao.menu.MenuAdder;
+import logic.obj.uao.UAONames;
 
 public class InitMenu extends InitHandler implements Initializer {
     @Override
@@ -13,6 +13,6 @@ public class InitMenu extends InitHandler implements Initializer {
 
     public static void initMenu() {
         UAOAdders.menuAdder.addAllInitUAO();
-        UAOHandler.UAOStack.push(Finders.menuFinder.findMenuByName("mainMenu"));
+        UAOHandler.currentUAO = UAOFinders.menuFinder.findUAOByName(UAONames.MENU_MAIN);
     }
 }

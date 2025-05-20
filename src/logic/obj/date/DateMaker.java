@@ -1,10 +1,9 @@
 package logic.obj.date;
 
-import logic.obj.day.DayHandler;
 import logic.obj.day.DayAdder;
 import logic.find.Finders;
-import models.Date;
-import models.Day;
+import models.calendar.Date;
+import models.calendar.Day;
 
 import java.time.LocalTime;
 import java.util.ArrayList;

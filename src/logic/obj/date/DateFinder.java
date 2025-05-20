@@ -2,8 +2,8 @@ package logic.obj.date;
 
 import logic.obj.calendar.CalendarHandler;
 import logic.find.Finder;
-import models.Date;
-import models.Day;
+import models.calendar.Date;
+import models.calendar.Day;
 
 import java.util.List;
 

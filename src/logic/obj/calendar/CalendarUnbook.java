@@ -1,13 +1,11 @@
 package logic.obj.calendar;
 
-import logic.obj.date.DateFinder;
 import logic.obj.date.DateMaker;
 import logic.find.Finders;
 import logic.obj.date.DateRemover;
-import models.Date;
-import models.Day;
+import models.calendar.Date;
+import models.calendar.Day;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 

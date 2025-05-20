@@ -1,6 +1,6 @@
 package logic.file;
 
-import models.Calendar;
+import models.calendar.Calendar;
 
 public class FileSaver extends FileHandler {
     public static void saveToFile(Calendar calendar, String fileName) {

@@ -1,6 +1,6 @@
 package logic.obj.calendar;
 
-import models.Day;
+import models.calendar.Day;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -9,6 +9,10 @@ import java.util.TreeMap;
 
 public class CalendarBusyDays {
     public static Map<Integer, Day> busyDays(Day from, Day to) {
+        if (from == null || to == null) {
+            return null;
+        }
+
         if (from.getLocalDate().isAfter(to.getLocalDate())) {
             return null;
         }
@@ -25,9 +29,9 @@ public class CalendarBusyDays {
             }
 
             if (hashDays.containsKey(d)) {
-                hashDays.put(d, hashDays.get(d) + d.getAllOccupiedHours());
+                hashDays.put(d, hashDays.get(d) + d.getAllOccupiedMinutes());
             } else {
-                hashDays.put(d, d.getAllOccupiedHours());
+                hashDays.put(d, d.getAllOccupiedMinutes());
             }
         }
 

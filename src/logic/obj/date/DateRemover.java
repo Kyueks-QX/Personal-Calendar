@@ -3,8 +3,8 @@ package logic.obj.date;
 import logic.find.Finders;
 import logic.obj.calendar.CalendarHandler;
 import logic.obj.day.DayRemover;
-import models.Date;
-import models.Day;
+import models.calendar.Date;
+import models.calendar.Day;
 
 import java.util.ArrayList;
 

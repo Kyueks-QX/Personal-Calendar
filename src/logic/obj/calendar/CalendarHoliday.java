@@ -1,8 +1,7 @@
 package logic.obj.calendar;
 
-import logic.obj.day.DayHandler;
 import logic.find.Finders;
-import models.Day;
+import models.calendar.Day;
 
 public class CalendarHoliday extends CalendarHandler {
     public static boolean holiday(Day day) {

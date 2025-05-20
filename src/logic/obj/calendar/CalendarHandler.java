@@ -1,6 +1,6 @@
 package logic.obj.calendar;
 
-import models.Calendar;
+import models.calendar.Calendar;
 
 //all classes which handle classes inherit this
 public abstract class CalendarHandler {

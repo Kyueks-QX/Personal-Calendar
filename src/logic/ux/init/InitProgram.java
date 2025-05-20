@@ -7,7 +7,7 @@ public class InitProgram extends InitHandler implements Initializer {
     }
 
     public static void initProgram() {
-        InitMenu.initMenu();
         InitPrompt.initPrompt();
+        InitMenu.initMenu();
     }
 }

@@ -1,8 +1,8 @@
 package logic.obj.date;
 
 import logic.obj.calendar.CalendarHandler;
-import models.Date;
-import models.Day;
+import models.calendar.Date;
+import models.calendar.Day;
 
 import java.util.ArrayList;
 import java.util.Comparator;

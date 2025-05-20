@@ -1,13 +1,14 @@
 package logic.file_new;
 
 import logic.file.FileHandler;
-import models.Calendar;
+import models.calendar.Calendar;
 
 import java.io.*;
 
 public class FileLoader extends FileHandler {
     public static Calendar loadCalendarFromFile(String fileName) {
         Calendar calendar = null;
+        if (fileName == null) { fileName = "default.txt"; }
 
         try {
             FileInputStream file = new FileInputStream(fileName);

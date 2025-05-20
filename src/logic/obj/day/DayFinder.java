@@ -3,8 +3,8 @@ package logic.obj.day;
 import logic.find.Finder;
 import logic.find.Finders;
 import logic.obj.calendar.CalendarHandler;
-import models.Date;
-import models.Day;
+import models.calendar.Date;
+import models.calendar.Day;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package logic.obj.day;
 
-import models.Day;
+import models.calendar.Day;
 
 import java.util.*;
 

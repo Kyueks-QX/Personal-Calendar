@@ -1,9 +1,9 @@
 package logic.obj.calendar;
 
 import logic.file_new.FileLoader;
-import models.Calendar;
-import models.Date;
-import models.Day;
+import models.calendar.Calendar;
+import models.calendar.Date;
+import models.calendar.Day;
 
 import java.time.LocalTime;
 import java.util.ArrayList;

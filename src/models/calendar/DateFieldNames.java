@@ -1,4 +1,4 @@
-package models;
+package models.calendar;
 
 public enum DateFieldNames {
     DATE,

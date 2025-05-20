@@ -1,8 +1,8 @@
 package logic.obj.date;
 
 import logic.obj.calendar.CalendarHandler;
-import models.Date;
-import models.Day;
+import models.calendar.Date;
+import models.calendar.Day;
 
 // changes in which day a date is
 // if a day doesn't exist for the date, make a new day

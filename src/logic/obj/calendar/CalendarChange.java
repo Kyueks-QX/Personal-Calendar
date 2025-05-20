@@ -5,9 +5,9 @@ import logic.obj.date.DateConflict;
 import logic.obj.date.DateMaker;
 import logic.find.Finders;
 import logic.obj.day.DayAdder;
-import models.Date;
-import models.DateFieldNames;
-import models.Day;
+import models.calendar.Date;
+import models.calendar.DateFieldNames;
+import models.calendar.Day;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
