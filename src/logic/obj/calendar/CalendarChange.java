@@ -24,6 +24,19 @@ import java.time.format.DateTimeFormatter;
 // 5 (ERROR): null argument(s) given
 
 public class CalendarChange extends CalendarHandler {
+    /**
+     * Changes any value the user wants by passing the date's day, start time, which field and with what value to change.
+     * @param day
+     * Date's day.
+     * @param startTime
+     * Date's start time.
+     * @param dateFieldNames
+     * Date's field.
+     * @param newValue
+     * New value to be entered into the field.
+     * @return
+     * Returns status after attempting to change the day.
+     */
     public static int change(Day day, LocalTime startTime, DateFieldNames dateFieldNames, String newValue) {
         if (calendar.getSingleDay(day) == null || startTime == null || dateFieldNames == null || newValue == null) {
             return 5;
@@ -69,8 +82,6 @@ public class CalendarChange extends CalendarHandler {
             }
         }
         else { return 3; }
-
-        //day.setSingleDate((Date) Finders.dateFinder.find(d), oldDate);
 
         return 0;
     }

@@ -7,6 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CalendarFind extends CalendarHandler {
+    /**
+     * Finds all days whose names and/or notes contain a user inputted string.
+     * @param str
+     * The string to search with.
+     * @return
+     * All dates that contain within their notes/names the string.
+     */
     public static List<Date> find(String str) {
         List<Date> dates = new ArrayList<>();
 

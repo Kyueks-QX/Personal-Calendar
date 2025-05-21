@@ -50,7 +50,7 @@ public class ActionAdder extends UAOHandler implements UAOAdder {
 
     private void busyDaysAction() {
         name = UAONames.ACTION_BUSYDAYS;
-        function = InputAgenda::input;
+        function = InputBusyDays::input;
         addUAO();
     }
 

@@ -17,8 +17,8 @@ public class Date implements Serializable {
     }
 
     public int getStartTimeAsInt() {
-        return startTime.getHour() * 3600
-                + startTime.getMinute() * 60;
+        return startTime.getHour() * 60
+                + startTime.getMinute();
     }
 
     public String getStartTimeAsString() {
@@ -34,8 +34,8 @@ public class Date implements Serializable {
     }
 
     public int getEndTimeAsInt() {
-        return endTime.getHour() * 3600
-                + endTime.getMinute() * 60;
+        return endTime.getHour() * 60
+                + endTime.getMinute();
     }
 
     public String getEndTimeAsString() {

@@ -17,7 +17,7 @@ public class OutputList {
         for (Map.Entry<Integer, Day> busyDay : busyDays.entrySet()) {
             System.out.println(
                     busyDay.getValue().getLocalDateAsString()
-                    + ", " + busyDay.getKey() / 60.0f + " hour(s)"
+                    + ", " + (busyDay.getKey() / 60.0f) + " hour(s)"
             );
         }
     }

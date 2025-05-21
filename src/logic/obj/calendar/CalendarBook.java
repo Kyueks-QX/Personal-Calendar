@@ -20,6 +20,21 @@ import java.util.ArrayList;
 // 4 (ERROR): events ends before it starts
 
 public class CalendarBook extends CalendarHandler {
+    /**
+     * Adds a new date to the calendar.
+     * @param day
+     * The date's day.
+     * @param startTime
+     * The date's start time.
+     * @param endTime
+     * The date's end time.
+     * @param name
+     * The date's name.
+     * @param note
+     * The date's note.
+     * @return
+     * Returns status of attempt to book entity.
+     */
     public static int book(Day day, LocalTime startTime, LocalTime endTime, String name, String note) {
         if (day == null || startTime == null || endTime == null || name == null || note == null) {
             return 1;

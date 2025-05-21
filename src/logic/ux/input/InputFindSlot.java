@@ -69,6 +69,8 @@ public class InputFindSlot extends InputHandler {
         );
 
         if (date == null) { return 1; }
+
+        System.out.println(date);
         return 0;
     }
 }

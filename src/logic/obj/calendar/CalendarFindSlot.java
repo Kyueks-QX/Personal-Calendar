@@ -13,6 +13,13 @@ import java.util.ArrayList;
 // findslot merged with findslotwith
 
 public class CalendarFindSlot {
+    /**
+     * 
+     * @param fromDay
+     * @param hours
+     * @param fileName
+     * @return
+     */
     public static Date findSlot(Day fromDay, int hours, String fileName) {
         //the gap between 8:00 and 17:00 is 9 hours
         if (fromDay == null || hours <= 0 || hours >= 9) {
@@ -40,19 +47,35 @@ public class CalendarFindSlot {
 
                 ArrayList<Date> dates = day.getDates();
 
-                for (int i = 0; i < dates.size() - 1; i++) {
-                    Date prevDate = dates.get(i);
-                    Date nextDate = dates.get(i + 1);
+                for (int i = -1; i < dates.size(); i++) {
+                    Date prevDate = null;
+                    Date nextDate;
+                    int leftHour;
+                    int rightHour;
+                    if (i != -1) {
+                        prevDate = dates.get(i);
+                        leftHour = prevDate.getEndTimeAsInt();
+                    } else {
+                        leftHour = earlyBoundary.getHour() * 60;
+                    }
+                    if (i != dates.size() - 1) {
+                        nextDate = dates.get(i + 1);
+                        rightHour = nextDate.getStartTimeAsInt();
+                    } else {
+                        rightHour = lateBoundary.getHour() * 60;
+                    }
 
                     // skips all the dates that end before 8:00 or after 17:00
-                    if (prevDate.getEndTime().isBefore(earlyBoundary) || prevDate.getEndTime().isAfter(lateBoundary)) {
-                        continue;
+                    if (prevDate != null) {
+                        if (prevDate.getEndTime().isBefore(earlyBoundary) || prevDate.getEndTime().isAfter(lateBoundary)) {
+                            continue;
+                        }
                     }
 
                     // gets the time gap between a pair of dates
                     // if the gap is wide enough and doesn't go past 17:00, it counts as a valid time spot for a date
-                    if (nextDate.getStartTimeAsInt() - prevDate.getEndTimeAsInt() >= hours * 3600 && lateBoundary.getHour() - prevDate.getEndTime().getHour() >= hours) {
-                        LocalTime prevDateEndTime = prevDate.getEndTime();
+                    if (rightHour - leftHour >= hours * 60 && lateBoundary.getHour() - leftHour / 60 >= hours) {
+                        LocalTime prevDateEndTime = LocalTime.of(leftHour / 60, leftHour % 60);
                         return new Date.Builder()
                                 .withStartTime(LocalTime.of(prevDateEndTime.getHour(), prevDateEndTime.getMinute(), 0))
                                 .withEndTime(LocalTime.of(prevDateEndTime.getHour() + hours, prevDateEndTime.getMinute(), 0))

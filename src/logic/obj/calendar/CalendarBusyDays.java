@@ -8,6 +8,15 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class CalendarBusyDays {
+    /**
+     * Returns a list of busy days from a range of days with how many hours are occupied.
+     * @param from
+     * From this day.
+     * @param to
+     * To this day.
+     * @return
+     * Returns all relevant days as a map of their hours and the days themselves.
+     */
     public static Map<Integer, Day> busyDays(Day from, Day to) {
         if (from == null || to == null) {
             return null;

@@ -1,6 +1,5 @@
 package logic.ux.program;
 
-import logic.obj.uao.UAOFinders;
 import logic.obj.uao.UAOHandler;
 import logic.obj.uao.UAONames;
 import logic.obj.uao.menu.MenuTraverse;
