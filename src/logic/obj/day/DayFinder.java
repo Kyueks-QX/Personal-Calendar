@@ -15,7 +15,7 @@ public class DayFinder extends DayHandler implements Finder {
         List<Day> days = CalendarHandler.calendar.getDays();
 
         for (Day day : days) {
-            if (day.equals(searchedDay)) {
+            if (day.getLocalDate().isEqual(searchedDay.getLocalDate())) {
                 return searchedDay;
             }
         }
@@ -28,8 +28,8 @@ public class DayFinder extends DayHandler implements Finder {
         List<Day> days = CalendarHandler.calendar.getDays();
 
         for (Day day : days) {
-            if (day.equals(searchedDay)) {
-                return days.indexOf(searchedDay);
+            if (day.getLocalDate().isEqual(searchedDay.getLocalDate())) {
+                return days.indexOf(day);
             }
         }
         return -1;

@@ -16,7 +16,11 @@ public class Calendar implements Serializable {
     }
 
     public Day getSingleDay(Day day) {
-        return days.get(Finders.dayFinder.findIndex(day));
+        int index = Finders.dayFinder.findIndex(day);
+        if (index == -1) {
+            return null;
+        }
+        return days.get(index);
     }
 
     public void setDays(ArrayList<Day> days) {
@@ -24,7 +28,11 @@ public class Calendar implements Serializable {
     }
 
     public void setSingleDay(Day targetDay, Day newDay) {
-        days.set(Finders.dayFinder.findIndex(targetDay), newDay);
+        int index = Finders.dayFinder.findIndex(targetDay);
+        if (index == -1) {
+            return;
+        }
+        days.set(index, newDay);
     }
 
     public Calendar() {

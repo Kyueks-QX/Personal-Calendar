@@ -26,6 +26,9 @@ public class StatusBook extends OutputHandler {
                 message = "ERROR: Date's start time is after its end time.";
                 break;
             }
+            case 5: {
+                message = "ERROR: Not a valid Date field.";
+            }
         }
 
         System.out.println(message + "\n");

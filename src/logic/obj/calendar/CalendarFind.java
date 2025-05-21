@@ -12,7 +12,7 @@ public class CalendarFind extends CalendarHandler {
 
         for (Day day : CalendarHandler.calendar.getDays()) {
             for (Date d : day.getDates()) {
-                if (d.equivalent(new Date.Builder().withName(str)) || d.equivalent(new Date.Builder().withNote(str))) {
+                if (d.getName().contains(str) || d.getNote().contains(str)) {
                     dates.add(d);
                 }
             }

@@ -1,18 +1,35 @@
 package logic.file;
-
 import models.calendar.Calendar;
 
-public class FileSaver extends FileHandler {
-    public static void saveToFile(Calendar calendar, String fileName) {
-        if (fileName != null) {
-            FileCloser.closeFile();
-            FileCreator.createFile(fileName);
-            FileOpener.openFile(fileName);
-        }
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
-        // toString() may be overridden in the future, IDK
-        FileText.setText(calendar.getDays().toString());
-        FileWriter.writeToFile();
-        FileCloser.closeFile();
+/**
+ * Class for saving in a file.
+ */
+public class FileSaver extends FileHandler {
+    /**
+     * Saves the calendar to a file.
+     * @param calendar
+     * The calendar currently in use.
+     */
+    public static void saveCalendarToFile(Calendar calendar) {
+
+        if (logic.file.FileHandler.fileName == null) { logic.file.FileHandler.fileName = "default.txt"; }
+
+        try {
+            if (calendar == null) {
+                throw new RuntimeException();
+            }
+            FileOutputStream file = new FileOutputStream(logic.file.FileHandler.fileName);
+            ObjectOutputStream out = new ObjectOutputStream(file);
+
+            out.writeObject(calendar);
+
+            out.close();
+            file.close();
+        } catch (Exception ex) {
+            System.out.println("File save error: " + ex);
+        }
     }
 }

@@ -24,40 +24,41 @@ import java.time.format.DateTimeFormatter;
 // 5 (ERROR): null argument(s) given
 
 public class CalendarChange extends CalendarHandler {
-    public int change(Day day, LocalTime startTime, DateFieldNames dateFieldNames, String newValue) {
+    public static int change(Day day, LocalTime startTime, DateFieldNames dateFieldNames, String newValue) {
         if (calendar.getSingleDay(day) == null || startTime == null || dateFieldNames == null || newValue == null) {
             return 5;
         }
 
         Date d = DateMaker.makeDate(day, startTime, null, null, null);
-        day = calendar.getSingleDay(day);
         Date changeDate = (Date) Finders.dateFinder.find(d);
+        day = calendar.getSingleDay(day);
+        Date oldDate = day.getSingleDate(changeDate);
 
-        if (day.getDates().contains(changeDate) && changeDate != null) {
+        if (day.getDates().contains(oldDate) && oldDate != null) {
             try {
                 switch (dateFieldNames) {
-                    case DATE: {
+                    case DAY: {
                         Day newDay = new Day(LocalDate.parse(newValue, DateTimeFormatter.ofPattern("dd-MM-yyyy")));
                         DayAdder.addDay(newDay);
-                        if (DateMover.changeDayOfDate(day, newDay, changeDate) != 0) { return 4; }
+                        if (DateMover.changeDayOfDate(day, newDay, oldDate) != 0) { return 4; }
                         return 0;
                     }
-                    case START_TIME: {
+                    case STARTTIME: {
                         changeDate.setStartTime(LocalTime.parse(newValue, DateTimeFormatter.ofPattern("HH:mm")));
-                        if (DateConflict.isThereDateConflict(calendar, day, changeDate)) { return 4; }
+                        if (DateConflict.isThereDateConflict(calendar, day, oldDate)) { return 4; }
                         break;
                     }
-                    case END_TIME: {
+                    case ENDTIME: {
                         changeDate.setEndTime(LocalTime.parse(newValue, DateTimeFormatter.ofPattern("HH:mm")));
-                        if (DateConflict.isThereDateConflict(calendar, day, changeDate)) { return 4; }
+                        if (DateConflict.isThereDateConflict(calendar, day, oldDate)) { return 4; }
                         break;
                     }
                     case NAME: {
-                        changeDate.setName(newValue);
+                        oldDate.setName(newValue);
                         break;
                     }
                     case NOTE: {
-                        changeDate.setNote(newValue);
+                        oldDate.setNote(newValue);
                         break;
                     }
                     default:
@@ -69,7 +70,7 @@ public class CalendarChange extends CalendarHandler {
         }
         else { return 3; }
 
-        day.setSingleDate((Date) Finders.dateFinder.find(d), changeDate);
+        //day.setSingleDate((Date) Finders.dateFinder.find(d), oldDate);
 
         return 0;
     }

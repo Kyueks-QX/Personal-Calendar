@@ -23,7 +23,7 @@ public class DateRemover extends DateHandler {
         newDay.setDates(dates);
         CalendarHandler.calendar.setSingleDay(oldDay, newDay);
 
-        DayRemover.removeEmptyDays();
+        DayRemover.removeEmptyDay(newDay);
         return 0;
     }
 
@@ -41,7 +41,7 @@ public class DateRemover extends DateHandler {
         newDay.setDates(dates);
         CalendarHandler.calendar.setSingleDay(oldDay, newDay);
 
-        DayRemover.removeEmptyDays();
+        DayRemover.removeEmptyDay(newDay);
         return 0;
     }
 }

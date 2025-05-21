@@ -25,10 +25,6 @@ public class CalendarUnbook extends CalendarHandler {
 
         DateRemover.removeDateFromDay(undate, day);
 
-        ArrayList<Day> days = calendar.getDays();
-        days.set(Finders.dayFinder.findIndex(targetDay), day);
-        calendar.setDays(days);
-
         return 0;
     }
 }

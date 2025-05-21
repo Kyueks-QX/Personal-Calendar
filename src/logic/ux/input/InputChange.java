@@ -1,6 +1,7 @@
 package logic.ux.input;
 
 import logic.obj.calendar.CalendarBook;
+import logic.obj.calendar.CalendarChange;
 import logic.obj.uao.UAOFinders;
 import logic.obj.uao.UAOHandler;
 import logic.obj.uao.UAONames;
@@ -17,6 +18,9 @@ import java.time.format.DateTimeFormatter;
 
 public class InputChange extends InputHandler {
     public static Integer input(Void v) {
+        UAOHandler.menuArgs.clear();
+        int index;
+        DateFieldNames dateFieldName = null;
         LocalDate localDate;
 
         PromptChain promptChain = new PromptChain();
@@ -30,59 +34,47 @@ public class InputChange extends InputHandler {
             UAOHandler.currentUAO = prompt;
             OutputUAO.printUAO();
             inputText = scanner.nextLine();
+            try {
+                if (Integer.parseInt(inputText) == 0) { return -1; }
+            } catch (Exception _) { }
 
-            switch (prompt.getName()) {
-                case PROMPT_CHANGE_DAY: {
-                    localDate = LocalDate.parse(inputText, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-                    UAOHandler.menuArgs.set(0, new Day(localDate));
-                    break;
+            try {
+                switch (prompt.getName()) {
+                    case PROMPT_CHANGE_DAY: {
+                        localDate = LocalDate.parse(inputText, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+                        UAOHandler.menuArgs.add(new Day(localDate));
+                        break;
+                    }
+                    case PROMPT_CHANGE_STARTTIME: {
+                        UAOHandler.menuArgs.add(LocalTime.parse(inputText, DateTimeFormatter.ofPattern("HH:mm")));
+                        break;
+                    }
+                    case PROMPT_CHANGE_DATEFIELD: {
+                        index = Integer.parseInt(inputText) - 1;
+                        if (index >= 5) { return 5; }
+                        dateFieldName = DateFieldNames.values()[index];
+                        UAOHandler.menuArgs.add(dateFieldName);
+                        break;
+                    }
                 }
-                case PROMPT_CHANGE_STARTTIME: {
-                    UAOHandler.menuArgs.set(1, LocalTime.parse(inputText, DateTimeFormatter.ofPattern("HH:mm")));
-                    break;
-                }
-                case PROMPT_CHANGE_DATEFIELD: {
-                    UAOHandler.menuArgs.set(2, DateFieldNames.valueOf(inputText));
-                    break;
-                }
+            } catch (Exception e) {
+                System.out.println("Parsing Error!: " + e);
+                return -2;
             }
         }
 
-        Prompt prompt = (Prompt) UAOFinders.promptFinder.findUAOByName(UAONames.valueOf(inputText));
-        UAOHandler.currentUAO = prompt;
-        OutputUAO.printUAO();
-        inputText = scanner.nextLine();
+        if (dateFieldName == null) { return 5; }
 
-        switch (prompt.getName()) {
-            case PROMPT_BOOK_DAY: {
-                localDate = LocalDate.parse(inputText, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-                UAOHandler.menuArgs.set(0, new Day(localDate));
-                break;
-            }
-            case PROMPT_BOOK_STARTTIME: {
-                UAOHandler.menuArgs.set(1, LocalTime.parse(inputText, DateTimeFormatter.ofPattern("HH:mm")));
-                break;
-            }
-            case PROMPT_BOOK_ENDTIME: {
-                UAOHandler.menuArgs.set(2, LocalTime.parse(inputText, DateTimeFormatter.ofPattern("HH:mm")));
-                break;
-            }
-            case PROMPT_BOOK_NAME: {
-                UAOHandler.menuArgs.set(3, inputText);
-                break;
-            }
-            case PROMPT_BOOK_NOTE: {
-                UAOHandler.menuArgs.set(4, inputText);
-                break;
-            }
-        }
+        Prompt prompt = (Prompt) UAOFinders.promptFinder.findUAOByName(
+                UAONames.valueOf("PROMPT_BOOK_" + dateFieldName)
+        );
+        InputBook.inputBook(prompt);
 
-        return CalendarBook.book(
+        return CalendarChange.change(
                 (Day) UAOHandler.menuArgs.get(0),
                 (LocalTime) UAOHandler.menuArgs.get(1),
-                (LocalTime) UAOHandler.menuArgs.get(2),
-                (String) UAOHandler.menuArgs.get(3),
-                (String) UAOHandler.menuArgs.get(4)
+                (DateFieldNames) UAOHandler.menuArgs.get(2),
+                (String) UAOHandler.menuArgs.get(3)
         );
     }
 }

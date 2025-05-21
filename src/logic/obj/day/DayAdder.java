@@ -5,6 +5,7 @@ import logic.obj.calendar.CalendarHandler;
 import models.calendar.Day;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Comparator;
 
 public class DayAdder extends DayHandler {
@@ -22,7 +23,8 @@ public class DayAdder extends DayHandler {
 
         Day newDay = new Day(localDate);
 
-        if (Finders.dayFinder.findIndex(newDay) != -1) {
+        if (Finders.dayFinder.findIndex(newDay) == -1) {
+            ArrayList<Day> days = CalendarHandler.calendar.getDays();
             days.add(newDay);
             days.sort(Comparator.comparing(Day::getLocalDate));
             return 0;
@@ -41,7 +43,8 @@ public class DayAdder extends DayHandler {
             }
         }
 
-        if (Finders.dayFinder.findIndex(newDay) != -1) {
+        if (Finders.dayFinder.findIndex(newDay) == -1) {
+            ArrayList<Day> days = CalendarHandler.calendar.getDays();
             days.add(newDay);
             days.sort(Comparator.comparing(Day::getLocalDate));
             return 0;

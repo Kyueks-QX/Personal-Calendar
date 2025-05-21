@@ -1,6 +1,6 @@
 package logic.obj.calendar;
 
-import logic.file_new.FileLoader;
+import logic.file.FileLoader;
 import models.calendar.Calendar;
 import models.calendar.Date;
 import models.calendar.Day;

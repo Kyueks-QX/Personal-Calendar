@@ -1,14 +1,11 @@
 package logic.file;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-
-//all classes which handle files inherit this
+/**
+ * Every file related class inherits this.
+ */
 public abstract class FileHandler {
+    /**
+     * Name of currently used file. .txt extension only.
+     */
     public static String fileName;
-    public static String text;
-    public static File file;
-    public static FileReader fileReader;
-    public static FileWriter fileWriter;
 }

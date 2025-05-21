@@ -2,10 +2,11 @@ package models.calendar;
 
 import logic.find.Finders;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
-public class Day {
+public class Day implements Serializable {
     private LocalDate localDate;
     private boolean holiday;
     private List<Date> dates;
@@ -78,5 +79,13 @@ public class Day {
         this.localDate = day.localDate;
         this.holiday = day.holiday;
         this.dates = day.dates;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Day day = (Day) o;
+        return isHoliday() == day.isHoliday() && Objects.equals(getLocalDate(), day.getLocalDate()) && Objects.equals(getDates(), day.getDates());
     }
 }

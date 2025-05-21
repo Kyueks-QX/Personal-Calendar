@@ -1,11 +1,12 @@
 package models.calendar;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.Objects;
 
 // A date, synonymous to meeting, not time. The date still has time, though.
 // All functionality involving dates don't care about the seconds, just minutes and hours.
-public class Date {
+public class Date implements Serializable {
     private LocalTime startTime;
     private LocalTime endTime;
     private String name;
@@ -134,7 +135,6 @@ public class Date {
         return "startTime: " + startTime.toString() +
                 ", endTime: " + endTime.toString() +
                 ", name: " + name +
-                ", note: " + note +
-                '}';
+                ", note: " + note;
     }
 }

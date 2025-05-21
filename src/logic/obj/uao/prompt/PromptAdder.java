@@ -23,6 +23,7 @@ public class PromptAdder extends UAOHandler implements UAOAdder {
         holidayPrompt();
         mergePrompt();
         unbookPrompt();
+        filePrompt();
     }
 
     @Override
@@ -129,7 +130,7 @@ public class PromptAdder extends UAOHandler implements UAOAdder {
         name = UAONames.PROMPT_FINDSLOT_FILENAME;
         inputField = "String";
         instruction = "From which save file's calendar to search in addition to the loaded one? (* for none, 0 to exit)";
-        format = "format: letters only, ends with .txt";
+        format = "format: letters only, .txt is automatically appended";
         addUAO();
     }
 
@@ -145,7 +146,7 @@ public class PromptAdder extends UAOHandler implements UAOAdder {
         name = UAONames.PROMPT_MERGE;
         inputField = "String";
         instruction = "Which save file to merge into current calendar? (0 to exit)";
-        format = "format: letters only, ends with .txt";
+        format = "format: letters only, .txt is automatically appended";
         addUAO();
     }
 
@@ -154,6 +155,14 @@ public class PromptAdder extends UAOHandler implements UAOAdder {
         inputField = "Day";
         instruction = "Remove from which day? (0 to exit)";
         format = "format: dd-MM-yyyy";
+        addUAO();
+    }
+
+    private void filePrompt() {
+        name = UAONames.PROMPT_SAVE_CHANGE;
+        inputField = "String";
+        instruction = "What's the name of the new file? (0 to exit)";
+        format = "format: letters only, .txt is automatically appended";
         addUAO();
     }
 }

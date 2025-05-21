@@ -19,11 +19,13 @@ public class DayRemover extends DayHandler {
         return 0;
     }
 
-    public static void removeEmptyDays() {
-        for (Day day : CalendarHandler.calendar.getDays()) {
-            if (day.getDates().isEmpty()) {
-                removeDay(day);
-            }
+    public static void removeEmptyDay(Day targetDay) {
+        if (targetDay == null) {
+            return;
         }
+        targetDay = (Day) Finders.dayFinder.find(targetDay);
+        ArrayList<Day> days = CalendarHandler.calendar.getDays();
+        days.remove(targetDay);
+        CalendarHandler.calendar.setDays(days);
     }
 }

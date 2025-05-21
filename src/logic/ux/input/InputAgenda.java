@@ -18,6 +18,9 @@ public class InputAgenda extends InputHandler {
         UAOHandler.currentUAO = UAOFinders.promptFinder.findUAOByName(UAONames.PROMPT_AGENDA);
         OutputUAO.printUAO();
         inputText = scanner.nextLine();
+        try {
+            if (Integer.parseInt(inputText) == 0) { return -1; }
+        } catch (Exception _) { }
 
         localDate = LocalDate.parse(inputText, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         OutputList.printDateList(CalendarAgenda.agenda(new Day(localDate)));

@@ -15,21 +15,11 @@ public class DateMaker {
             DayAdder.addDay(day.getLocalDate());
         }
 
-        if (startTime.isAfter(endTime)) {
-            return null;
+        if (endTime != null) {
+            if (startTime.isAfter(endTime)) {
+                return null;
+            }
         }
-
-        Date newDate = new Date.Builder()
-                .withStartTime(startTime)
-                .withEndTime(endTime)
-                .withName(name)
-                .withNote(note)
-                .build();
-
-        ArrayList<Date> dates = day.getDates();
-        dates.add(newDate);
-        DateAdder.addDateToDay(newDate, day);
-        DayAdder.addDay(day);
 
         return new Date.Builder()
                 .withStartTime(startTime)

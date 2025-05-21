@@ -1,6 +1,6 @@
 package logic.obj.uao.menu;
 
-import logic.file_new.FileName;
+import logic.file.FileName;
 import logic.obj.uao.UAOAdder;
 import logic.obj.uao.UAOFinders;
 import logic.obj.uao.UAOHandler;
@@ -53,7 +53,8 @@ public class MenuAdder extends UAOHandler implements UAOAdder {
 
     private void mainMenu() {
         name = UAONames.MENU_MAIN;
-        desc = "Welcome to your personal calendar!";
+        desc = "Welcome to your personal calendar!" + "\n"
+        + "Enter the word in round brackets to navigate the menu.";
 
         options = new HashMap<>();
         options.put(UAONames.MENU_CALCHANGE, "(calchange) Make changes to the calendar");
@@ -76,12 +77,12 @@ public class MenuAdder extends UAOHandler implements UAOAdder {
         desc = "What would you like to do with your calendar?";
 
         options = new HashMap<>();
-        options.put(UAONames.ACTION_BOOK, "(1) Book a date");
-        options.put(UAONames.ACTION_CHANGE, "(2) Change a date");
-        options.put(UAONames.ACTION_UNBOOK, "(3) Remove a date");
-        options.put(UAONames.ACTION_HOLIDAY, "(4) (Un)mark day as holiday");
-        options.put(UAONames.ACTION_MERGE, "(5) Merge saved calendar into current calendar");
-        options.put(UAONames.MENU_MAIN, "(0) Back to main menu");
+        options.put(UAONames.ACTION_BOOK, "(book) Book a date");
+        options.put(UAONames.ACTION_CHANGE, "(change) Change a date");
+        options.put(UAONames.ACTION_UNBOOK, "(unbook) Remove a date");
+        options.put(UAONames.ACTION_HOLIDAY, "(holiday) (Un)mark day as holiday");
+        options.put(UAONames.ACTION_MERGE, "(merge) Merge saved calendar into current calendar");
+        options.put(UAONames.MENU_MAIN, "(main) Back to main menu");
 
         addUAO();
     }
@@ -91,26 +92,25 @@ public class MenuAdder extends UAOHandler implements UAOAdder {
         desc = "What would you like to view from your calendar?";
 
         options = new HashMap<>();
-        options.put(UAONames.ACTION_AGENDA, "(1) See all dates in a given day");
-        options.put(UAONames.ACTION_BUSYDAYS, "(2) See all days with dates");
-        options.put(UAONames.ACTION_FIND, "(3) Find all dates with a name/note");
-        options.put(UAONames.ACTION_FINDSLOT, "(4) Find the earliest spot available for a given date");
-        options.put(UAONames.MENU_MAIN, "(0) Back to main menu");
+        options.put(UAONames.ACTION_AGENDA, "(agenda) See all dates in a given day");
+        options.put(UAONames.ACTION_BUSYDAYS, "(busydays) See all days with dates");
+        options.put(UAONames.ACTION_FIND, "(find) Find all dates with a name/note");
+        options.put(UAONames.ACTION_FINDSLOT, "(findslot) Find the earliest spot available for a given date");
+        options.put(UAONames.MENU_MAIN, "(main) Back to main menu");
 
         addUAO();
     }
 
     private void filesMenu() {
         name = UAONames.MENU_FILES;
-        desc = new StringBuilder("Would you like to save, load or change working file?")
-                .append("\n").append("Current file: ")
-                .append(FileName.getFileName()).toString();
+        desc = "Would you like to save, load or change working file?";
 
         options = new HashMap<>();
-        options.put(UAONames.ACTION_FILE_SAVE, "(1) Save");
-        options.put(UAONames.ACTION_FILE_LOAD, "(2) Load");
-        options.put(UAONames.ACTION_FILE_CHANGE, "(3) Change file");
-        options.put(UAONames.MENU_FILES, "(0) Back to main menu");
+        options.put(UAONames.ACTION_FILE_SAVE, "(file_save) Save");
+        options.put(UAONames.ACTION_FILE_LOAD, "(file_load) Load");
+        options.put(UAONames.ACTION_FILE_CHANGE, "(file_change) Change file");
+        options.put(UAONames.ACTION_FILE_CURRENT, "(file_current) See current file name");
+        options.put(UAONames.MENU_FILES, "(main) Back to main menu");
 
         addUAO();
     }
