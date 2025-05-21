@@ -8,6 +8,11 @@ import models.calendar.Date;
 import models.calendar.Day;
 
 public class CalendarMerge {
+    /**
+     * Merges all dates from file into the current calendar.
+     * @param fileName
+     * The name of the file whose data will be pulled from.
+     */
     public static void merge(String fileName) {
         Calendar tempCalendar = FileLoader.loadCalendarFromFile(fileName);
         if (tempCalendar == null) {

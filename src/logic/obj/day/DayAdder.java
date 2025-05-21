@@ -9,7 +9,13 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class DayAdder extends DayHandler {
-    // Makes a day if it doesn't exist
+    /**
+     * Adds a new day to the calendar using a LocalDate.
+     * @param localDate
+     * The local date.
+     * @return
+     * Status after attempt to add day to calendar.
+     */
     public static int addDay(LocalDate localDate) {
         if (localDate == null) {
             return 1;
@@ -32,6 +38,13 @@ public class DayAdder extends DayHandler {
         return 3;
     }
 
+    /**
+     * Adds a new day to the calendar.
+     * @param newDay
+     * The new day.
+     * @return
+     * Status after attempt to add day to calendar.
+     */
     public static int addDay(Day newDay) {
         if (newDay == null) {
             return 1;

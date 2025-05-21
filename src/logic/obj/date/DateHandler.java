@@ -1,6 +1,9 @@
 package logic.obj.date;
 
-//all classes which handle dates inherit this
+/**
+ * All classes which handle dates inherit this.
+ * Does nothing.
+ */
 public abstract class DateHandler {
 
 }

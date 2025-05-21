@@ -10,11 +10,11 @@ import logic.obj.day.DayFinder;
  */
 public class Finders {
     /**
-     * publicly available date finder.
+     * Publicly available date finder.
      */
     public static DateFinder dateFinder = new DateFinder();
     /**
-     * publicly available day finder.
+     * Publicly available day finder.
      */
     public static DayFinder dayFinder = new DayFinder();
 }

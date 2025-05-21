@@ -34,6 +34,16 @@ public class CalendarBook extends CalendarHandler {
      * The date's note.
      * @return
      * Returns status of attempt to book entity.
+     * <p>
+     * 0 (OK): Successfully booked
+     * <p>
+     * 1 (ERROR): null argument(s) given
+     * <p>
+     * 2 (ERROR): can't book on holidays
+     * <p>
+     * 3 (ERROR): conflicts with another date
+     * <p>
+     * 4 (ERROR): event ends before it starts
      */
     public static int book(Day day, LocalTime startTime, LocalTime endTime, String name, String note) {
         if (day == null || startTime == null || endTime == null || name == null || note == null) {

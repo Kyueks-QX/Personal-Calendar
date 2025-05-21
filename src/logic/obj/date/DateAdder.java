@@ -9,6 +9,15 @@ import java.util.Comparator;
 
 //adds date to a day
 public class DateAdder {
+    /**
+     * Adds a date to a day.
+     * @param date
+     * The date that will be added.
+     * @param targetDay
+     * Which day to add it to.
+     * @return
+     * Status of attempt to add date to day.
+     */
     public static int addDateToDay(Date date, Day targetDay) {
         if (DateConflict.isThereDateConflict(CalendarHandler.calendar, targetDay, date)) {
             return 3;

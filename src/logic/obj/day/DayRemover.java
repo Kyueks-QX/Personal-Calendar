@@ -7,6 +7,13 @@ import models.calendar.Day;
 import java.util.ArrayList;
 
 public class DayRemover extends DayHandler {
+    /**
+     * Removes a day from a calendar.
+     * @param targetDay
+     * The day to be removed.
+     * @return
+     * Status after attempt to remove day from calendar.
+     */
     public static int removeDay(Day targetDay) {
         Day day = (Day) Finders.dayFinder.find(targetDay);
         if (day == null) {
@@ -19,6 +26,11 @@ public class DayRemover extends DayHandler {
         return 0;
     }
 
+    /**
+     * Removes an empty day.
+     * @param targetDay
+     * The day to be removed.
+     */
     public static void removeEmptyDay(Day targetDay) {
         if (targetDay == null) {
             return;

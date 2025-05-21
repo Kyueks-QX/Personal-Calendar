@@ -4,9 +4,19 @@ import logic.obj.calendar.CalendarHandler;
 import models.calendar.Date;
 import models.calendar.Day;
 
-// changes in which day a date is
-// if a day doesn't exist for the date, make a new day
 public class DateMover extends DateHandler {
+    /**
+     * Changes in which day a date is.
+     * <p> If a day doesn't exist for the date, make a new day.
+     * @param fromDay
+     * Initial day.
+     * @param toDay
+     * Day after moving.
+     * @param targetDate
+     * The date that is being moved.
+     * @return
+     * Status after attempt to change day of date.
+     */
     public static int changeDayOfDate(Day fromDay, Day toDay, Date targetDate) {
         if (fromDay == null || toDay == null || targetDate == null) {
             return 1;

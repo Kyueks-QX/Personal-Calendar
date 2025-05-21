@@ -1,5 +1,8 @@
 package logic.obj.uao;
 
+/**
+ * The names of all User Action Objects.
+ */
 public enum UAONames {
     ACTION_AGENDA,
     ACTION_BOOK,

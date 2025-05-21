@@ -7,6 +7,7 @@ import models.calendar.Day;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Objects;
 
 // find the next available non-holiday time slot
 // has to be not earlier than 8 and not later than 17
@@ -14,11 +15,15 @@ import java.util.ArrayList;
 
 public class CalendarFindSlot {
     /**
-     * 
+     * Finds an available hour in a day from 8:00 to 17:00.
      * @param fromDay
+     * Chosen day.
      * @param hours
+     * How many hours the free slot should be.
      * @param fileName
+     * Whether to also search from the currently selected file and its name.
      * @return
+     * Returns a temporary date that contains the free hours if they're found.
      */
     public static Date findSlot(Day fromDay, int hours, String fileName) {
         //the gap between 8:00 and 17:00 is 9 hours
@@ -29,6 +34,9 @@ public class CalendarFindSlot {
         Calendar tempCalendar = null;
         if (fileName != null) {
             tempCalendar = FileLoader.loadCalendarFromFile(fileName);
+        }
+        if (Objects.equals(fileName, "*")) {
+            tempCalendar = null;
         }
         Calendar[] twoCalendars = { CalendarHandler.calendar, tempCalendar };
 

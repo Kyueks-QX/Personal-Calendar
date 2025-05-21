@@ -2,7 +2,12 @@ package logic.obj.calendar;
 
 import models.calendar.Calendar;
 
-//all classes which handle classes inherit this
+/**
+ * All classes which handle classes inherit this.
+ */
 public abstract class CalendarHandler {
+    /**
+     * Publicly available calendar.
+     */
     public static Calendar calendar = new Calendar();
 }

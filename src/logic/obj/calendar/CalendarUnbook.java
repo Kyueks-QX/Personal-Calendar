@@ -11,6 +11,17 @@ import java.util.ArrayList;
 
 //it just unbooks by removing an entry from the list
 public class CalendarUnbook extends CalendarHandler {
+    /**
+     * Removes a date from the calendar.
+     * @param targetDay
+     * From which day to remove the date.
+     * @param startTime
+     * Date's starting time.
+     * @param endTime
+     * Date's end time.
+     * @return
+     * Status of attempt to remove the date.
+     */
     public static int unbook(Day targetDay, LocalTime startTime, LocalTime endTime) {
         if (targetDay == null || startTime == null || endTime == null) {
             return 1;
